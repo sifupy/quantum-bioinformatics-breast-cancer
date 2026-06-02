@@ -1,0 +1,396 @@
+============================================================================
+  SYNTHETIC GENOMIC BENCHMARK — FINAL EXPERIMENT REPORT
+  Generated: 2026-05-24T19:23:07
+============================================================================
+
+  Total datasets generated: 24
+  Experiments             : 8
+  Seeds per experiment    : 3
+
+  Experiment             Objective
+  --------------------------------------------------------------------------
+  baseline               Validate that all pipeline stages achieve high
+                         recovery on a well-conditioned problem. Expected MI
+                         top-50 recall ≥ 0.90.
+  high_noise             Measure recovery degradation under high noise.
+                         Hypothesis: LASSO L1 penalty provides more robust
+                         selection than MI alone.
+  extreme_sparsity       Determine minimum support thresholds for FP-Growth
+                         under realistic sparsity. Evaluate LASSO stability
+                         when mutation counts are very low.
+  class_imbalance        Quantify the impact of class imbalance on biomarker
+                         recovery. Evaluate whether QUBO objective weighting
+                         compensates for skew.
+  weak_signal            Establish the signal-to-noise detection threshold
+                         for each pipeline stage. Expected result: MI fails
+                         below ~10× odds ratio; LASSO recovers signals down
+                         to ~5×.
+  high_dimensional       Justify the two-stage classical pre-filter in the
+                         pipeline. Document runtime scaling O(n·p) for MI vs
+                         O(2^k) for QUBO. Show that top-50 MI features
+                         contain ≥85% of biomarkers.
+  heterogeneity          Evaluate robustness of feature selection under
+                         biological heterogeneity. Test whether QUBO multi-
+                         objective formulation can separate mixed signals.
+  correlated_noise       Demonstrate the weakness of marginal MI scoring and
+                         the advantage of joint LASSO/QUBO objectives in the
+                         presence of correlated noise structure analogous to
+                         copy-number variation co-amplification blocks.
+
+────────────────────────────────────────────────────────────────────────────
+  PER-EXPERIMENT STATISTICS (mean across seeds)
+────────────────────────────────────────────────────────────────────────────
+  Experiment              N_pat   N_gen   Spar%  CanFr   MeanOR  RecOR2  ComutC   Lift
+  --------------------------------------------------------------------------
+  baseline                 1000    2000   97.66  0.550    33.03   0.967  0.4460  59.47
+  class_imbalance          1000    2000   97.74  0.200    28.90   0.967  0.4530  48.41
+  correlated_noise         1000    2000   94.51  0.550    34.50   0.967  0.4430  59.51
+  extreme_sparsity         1000    2000   99.39  0.550    33.82   0.967  0.2850  66.21
+  heterogeneity            1000    2000   97.65  0.550    31.54   1.000  0.4230  65.52
+  high_dimensional         1500   10000   97.73  0.550    38.23   1.000  0.4410  44.18
+  high_noise               1000    2000   91.71  0.550    32.98   0.967  0.4440  58.29
+  weak_signal              1000    2000   97.75  0.550    15.15   0.967  0.1620  20.37
+
+────────────────────────────────────────────────────────────────────────────
+  COLUMN LEGEND
+────────────────────────────────────────────────────────────────────────────
+  N_pat   = number of patients
+  N_gen   = number of genes
+  Spar%   = sparsity percentage (higher = more sparse)
+  CanFr   = cancer fraction
+  MeanOR  = mean odds ratio across biomarkers (higher = stronger signal)
+  RecOR2  = fraction of biomarkers with OR > 2 (detectability proxy)
+  ComutC  = mean co-mutation support in cancer patients
+  Lift    = mean co-mutation lift (cancer support / healthy support)
+
+────────────────────────────────────────────────────────────────────────────
+  OUTPUT DIRECTORY STRUCTURE
+────────────────────────────────────────────────────────────────────────────
+  outputs/
+    baseline/
+      seed_42/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_123/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_999/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+    high_noise/
+      seed_42/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_123/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_999/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+    extreme_sparsity/
+      seed_42/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_123/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_999/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+    class_imbalance/
+      seed_42/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_123/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_999/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+    weak_signal/
+      seed_42/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_123/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_999/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+    high_dimensional/
+      seed_42/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_123/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_999/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+    heterogeneity/
+      seed_42/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_123/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_999/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+    correlated_noise/
+      seed_42/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_123/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+      seed_999/
+        mutation_matrix.csv
+        labels.csv
+        diagnostics.txt
+        metadata.json
+        plot_*.png  (×5)
+    benchmark_summary.csv
+    benchmark_summary.json
+    benchmark_report.txt
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║         SCIENTIFIC DESCRIPTION OF THE BENCHMARK FRAMEWORK                  ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+── 1. Generation Rationale ────────────────────────────────────────────────────
+
+  This benchmark framework was designed to provide a fully controlled,
+  multi-configuration experimental environment for the methodological
+  validation of a hybrid quantum-classical biomarker selection pipeline
+  applied to breast cancer genomics.
+
+  The core motivation is epistemic: because real clinical datasets have unknown
+  ground truth regarding which genes are causal versus merely associated with
+  disease, it is impossible to objectively measure feature selection recall or
+  precision from real data alone. A suite of synthetic datasets with deliberately
+  implanted signal structures enables exact quantitative evaluation of:
+
+    • Feature selection recall (fraction of implanted biomarkers recovered)
+    • False-positive rate (noise genes selected in top-K)
+    • Algorithmic sensitivity to noise, sparsity, imbalance, and dimensionality
+    • QUBO/QAOA convergence across problem regimes
+    • FP-Growth itemset recovery under varying support levels
+
+── 2. Modelling Assumptions ───────────────────────────────────────────────────
+
+  (a) Binary mutation encoding: x_{ij} ∈ {0,1} mirrors VCF binarisation in
+      real tumour sequencing pipelines.
+
+  (b) Independence of background genes: noise genes are assigned independent
+      Bernoulli rates from U(rate_min, rate_max), approximating the somatic
+      mutation background in breast cancer WES data.
+
+  (c) Class-conditional mutation rates: cancer driver genes use TCGA BRCA
+      calibrated rates (Ciriello et al. 2015; CGAL 2012), scaled by the
+      biomarker_signal_scale parameter to simulate weak vs strong signal regimes.
+
+  (d) Co-occurrence as joint Bernoulli: co-mutation patterns are implanted by
+      forcing joint activation, sufficient for FP-Growth itemset validation.
+
+  (e) Tumour heterogeneity: a configurable fraction of cancer patients exhibits
+      attenuated mutation rates (configurable range), approximating molecular
+      subtype diversity in breast cancer.
+
+  (f) Correlated noise blocks: groups of genes are made internally correlated
+      via a Bernoulli-copying rule, simulating CNV co-amplification blocks.
+
+── 3. Experiment Regime Overview ──────────────────────────────────────────────
+
+  baseline          Moderate noise, strong signal, balanced 55/45 split.
+                    Performance ceiling reference.
+
+  high_noise        Background rates 5–12%, 20 correlated blocks (ρ=0.85).
+                    Robustness against noisy genomic background.
+
+  extreme_sparsity  Background rates 0.1–0.8%, co-mutation support 15%.
+                    Realistic low-TMB WES landscape.
+
+  class_imbalance   20% cancer fraction. Rare-disease screening scenario.
+
+  weak_signal       Biomarker rates scaled to 40% of TCGA baseline.
+                    Detection limit characterisation.
+
+  high_dimensional  10 000 genes × 1 500 patients. Justifies MI/LASSO
+                    pre-filter before QUBO/QAOA (limited by qubit count).
+
+  heterogeneity     40% subtype B fraction, 30–60% attenuation.
+                    Molecular subtype diversity simulation.
+
+  correlated_noise  30 blocks × 25 genes, ρ=0.95. Adversarial confounding
+                    to exploit MI marginal scoring weakness.
+
+── 4. Limitations ─────────────────────────────────────────────────────────────
+
+  • No real tumour clonal dynamics (branching evolution, subclonal architecture).
+  • Patient-level TMB variability not modelled; rates are gene-specific only.
+  • Co-mutation patterns modelled as exact joint activation.
+  • Binary encoding discards VAF, zygosity, and functional consequence.
+  • No survival, treatment, or imaging data; classification task only.
+  • Calibrated on TCGA BRCA aggregates; subtype/stage-specific landscapes
+    are not distinguished.
+
+── 5. Intended Use ────────────────────────────────────────────────────────────
+
+  This framework is intended EXCLUSIVELY for:
+    (1) Methodological validation and algorithm benchmarking.
+    (2) Ablation studies across statistical regimes.
+    (3) Proof-of-concept demonstration of the MI + LASSO + QUBO/QAOA pipeline.
+    (4) FP-Growth co-mutation discovery validation.
+    (5) QAOA/QUBO convergence characterisation.
+
+  It is NOT intended for:
+    • Clinical decision support or diagnosis.
+    • Biological hypothesis generation about real cancer drivers.
+    • Training production ML models for medical use.
+    • Publication of results as biological findings.
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║               THESIS & DEFENSE GUIDANCE                                     ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+── How This Multi-Experiment Framework Strengthens Methodological Validation ──
+
+  1. GROUND-TRUTH EVALUATION
+     Since biomarkers and co-mutation patterns are deliberately implanted,
+     you can compute exact Recall@K, Precision@K, and F1 for feature
+     selection across all 8 experiment regimes — impossible with real data.
+
+  2. ABLATION STUDIES VIA CONTROLLED REGIMES
+     Each experiment isolates one statistical factor (noise, sparsity, imbalance,
+     signal strength, dimensionality, heterogeneity). Cross-experiment comparison
+     isolates the effect of each factor independently.
+
+  3. MULTI-SEED VARIANCE ESTIMATION
+     Running each experiment with seeds {42, 123, 999} allows you to report
+     mean ± std for all metrics (Recall@K, AUC, QUBO solution quality),
+     demonstrating statistical robustness rather than cherry-picked results.
+
+  4. HIGH-DIMENSIONAL JUSTIFICATION (high_dimensional regime)
+     The 10 000-gene dataset directly motivates the MI+LASSO pre-filter stage:
+     QUBO/QAOA encoding of 10 000 binary variables requires ~10 000 qubits,
+     exceeding all near-term hardware. Runtime tables across regimes demonstrate
+     why dimensionality reduction is non-optional, not merely convenient.
+
+  5. CORRELATED NOISE ADVERSARIAL TEST (correlated_noise regime)
+     The adversarial correlated block structure specifically exploits the
+     weakness of marginal MI scoring (high correlation inflates MI of
+     non-causal genes). LASSO and QUBO joint-sparsity objectives are
+     expected to outperform marginal MI here — a testable hypothesis.
+
+  6. QUBO/QAOA CONVERGENCE ANALYSIS
+     With known ground truth, you can plot biomarker recovery vs. QAOA circuit
+     depth (p layers) and compare quantum annealing behaviour to classical
+     greedy baselines across all 8 regimes — producing convergence curves
+     expected in a quantum computing thesis chapter.
+
+── How to Present the Multi-Experiment Framework in a Defense ─────────────────
+
+  Framing (suggested phrasings):
+  ─────────────────────────────────────────────────────────────────────────────
+  "We constructed an 8-regime synthetic benchmark spanning noise, sparsity,
+   class imbalance, signal strength, dimensionality, tumour heterogeneity,
+   and adversarial correlated structure. Each regime was evaluated with 3
+   independent random seeds, yielding 24 experimental datasets. Gene names
+   were drawn from a real TCGA BRCA mutation matrix; class-conditional rates
+   were calibrated on published TCGA BRCA frequencies (CGAL 2012)."
+
+  Suggested slide structure:
+    Slide 1: Why synthetic? (ground-truth motivation, limitations of real data)
+    Slide 2: Benchmark design — 8 regimes table (objective, key parameters)
+    Slide 3: Dataset Card example (baseline, full statistics)
+    Slide 4: Ablation results — Recall@K across all 8 regimes (multi-seed bars)
+    Slide 5: QUBO convergence curves (baseline vs high_noise vs weak_signal)
+    Slide 6: FP-Growth recovery across sparsity regimes
+    Slide 7: Transition to real TCGA/GEO data — performance comparison
+
+── What Claims MUST NOT Be Made from Synthetic Experiments ───────────────────
+
+  ✗  "TP53 is a real breast cancer biomarker in our patients."
+  ✗  "QAOA outperforms classical optimisation for breast cancer diagnosis."
+  ✗  "The co-mutation of PIK3CA and BRCA1 is a novel biological discovery."
+  ✗  "Our model achieves 92% accuracy on breast cancer mutation data."
+
+  ✓  SAFE claims:
+     "On the baseline synthetic benchmark (seed=42), MI+LASSO recovers X%
+      of implanted biomarkers at K=50 features."
+     "Across 3 seeds, mean Recall@50 ± std in the high_noise regime is
+      Y ± Z%, compared to W ± V% in the baseline."
+     "QAOA with p=3 layers achieves Q% of the optimal QUBO solution quality
+      on the baseline feature selection instance."
+     "FP-Growth recovers all 6 implanted co-mutation patterns at minimum
+      support threshold 0.20 in the baseline, but only 3/6 in extreme_sparsity."
