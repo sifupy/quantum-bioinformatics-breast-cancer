@@ -70,6 +70,6 @@ jupyter notebook
 Experimental results, figures, ROC curves, confusion matrices, and statistical analyses are available in the `results/` directory.
 
 ## Author
-
-Master Thesis Project  
+ADDAR Seif eddine
+Master Thesis Project  (PFE)
 Quantum Optimization & Bioinformatics
